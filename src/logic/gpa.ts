@@ -53,7 +53,7 @@ function calculateProjectedGPA(clist: UserCourse[], cmap: Map<string, Course> ):
 
         const course = cmap.get(uc.courseCode);
         if(!course) {
-            continue; // done incase key doesnt exist 
+            continue; // done i ncase key doesnt exist 
         }
 
         const creds = course.credits;

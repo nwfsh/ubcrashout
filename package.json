@@ -1,6 +1,12 @@
 {
     "scripts": {
-      "build": "tsc",
-      "start": "node dist/index.js"
+        "build": "tsc",
+        "start": "node dist/index.js"
+    },
+    "dependencies": {
+        "better-sqlite3": "^12.5.0"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.6.13"
     }
-  }
+}
