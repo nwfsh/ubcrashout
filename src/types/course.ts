@@ -1,5 +1,10 @@
 // for all the course statuses
-export type CourseStatus = | "planned" | "in_progress" | "completed" | "failed" | "withdrawn";
+export type CourseStatus =
+  | "planned"
+  | "in_progress"
+  | "completed"
+  | "failed"
+  | "withdrawn";
 
 
 // defines a course

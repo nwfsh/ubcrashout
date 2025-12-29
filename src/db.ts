@@ -1,4 +1,9 @@
-import Database from "better-sqlite3"; // load the SQLite driver library
+import Database from "better-sqlite3";
+import fs from "fs";
+import path from "path";
 
-export const db = new Database("data/app.db"); // if data/app.db exists → open it, if not create it
-db.pragma("journal_mode = WAL"); // use the modern, safer default mode
+const dataDir = path.join(process.cwd(), "data");
+if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+
+export const db = new Database(path.join(dataDir, "app.db"));
+db.pragma("journal_mode = WAL");
