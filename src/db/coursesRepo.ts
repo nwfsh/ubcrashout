@@ -39,3 +39,14 @@ export function upsertCourse(course: Course) {
 export function getCourseByCode(code: string): Course | undefined {
     return getByCodeStmt.get(code) as Course | undefined;
 }
+
+
+export function getAllCourses(): Course[] {
+    return  db.prepare(` SELECT code, name, credits FROM courses`).all() as Course[];
+
+}
+
+export function getCourseMap(): Map<string, Course> { // map to optimise lookup via 0(1) calculation
+    const courses = getAllCourses();
+    return new Map(courses.map((c) => [c.code, c]));
+}
