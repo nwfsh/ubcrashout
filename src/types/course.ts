@@ -1,10 +1,5 @@
 // for all the course statuses
-export type CourseStatus =
-  | "planned"
-  | "in_progress"
-  | "completed"
-  | "failed"
-  | "withdrawn";
+export type CourseStatus = | "planned" | "in_progress" | "completed" | "failed" | "withdrawn";
 
 
 // defines a course
@@ -25,6 +20,6 @@ export type UserCourse = {
 
     status: CourseStatus;
 
-    grade?: number;           // only if done/failed, assume 0-100 only
+    grade?: number;           // only if done/failed, assume0-100 only
     expectedGrade?: number;   // only if future/inProgress
 }

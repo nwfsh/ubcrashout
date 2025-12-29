@@ -7,21 +7,18 @@ const insertStmt = db.prepare(`
 `);
 
 const selectByUserStmt = db.prepare(`
-  SELECT
-    id,
-    user_id as userId,
-    course_code as courseCode,
-    term,
-    status,
-    grade,
-    expected_grade as expectedGrade
+  SELECT id, user_id as userId, course_code as courseCode, term, status, grade, expected_grade as expectedGrade
   FROM user_courses
   WHERE user_id = ?
   ORDER BY term DESC
 `);
 
 export function addUserCourse(uc: UserCourse) {
-  insertStmt.run(uc);
+  insertStmt.run({
+    ...uc,
+    grade: uc.grade ?? null, // as better-sqlite3 always expect all paramters to be filled, since u made these field optional
+    expectedGrade: uc.expectedGrade ?? null, // these help them fill them with null if empty 
+});
 }
 
 export function getUserCourses(userId: string): UserCourse[] {
