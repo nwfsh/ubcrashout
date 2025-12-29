@@ -4,6 +4,7 @@ import "./db/init"; // to make sure to initialise db
 import type { UserCourse } from "./types/course";
 import { addUserCourse, getUserCourses } from "./db/userCoursesRepo";
 import { upsertCourse, getCourseByCode } from "./db/coursesRepo";
+import { getGpaSummary } from "./logic/gpaService";
 
 console.log(Math.floor(11.3));
 
@@ -16,8 +17,8 @@ upsertCourse( {
 console.log("Course in catalog:", getCourseByCode("CPSC 221"));
 
 const course1: UserCourse = {
-  id: "uc1",
-  userId: "u1",
+  id: "aidan1",
+  userId: "aidan",
   courseCode: "CPSC 221",
   term: "2024W2",
   status: "in_progress",
@@ -26,5 +27,6 @@ const course1: UserCourse = {
 
 addUserCourse(course1);
 
-const courses = getUserCourses("u1"); // tests to see if getting thigns from the database is working
+const courses = getUserCourses("aidan"); // tests to see if getting thigns from the database is working
 console.log("From DB:", courses);
+console.log("GPA Summary:", getGpaSummary("aidan"));

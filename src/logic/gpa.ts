@@ -13,7 +13,7 @@ function isProjected(c: UserCourse): boolean {
 // cmap is a course catelog, this helps u collect the credits of each course from the usercourse
 // cmap is in the form of <courseCode, Course>
 // using formula (Σ (grade × credits)) / (Σ credits)
-function calculatecurrentGPA(clist: UserCourse[], cmap: Map<string, Course> ): number {
+export function calculatecurrentGPA(clist: UserCourse[], cmap: Map<string, Course> ): number {
 
     let totalCredits = 0;
     let totalWeightedScore = 0;
@@ -41,7 +41,7 @@ function calculatecurrentGPA(clist: UserCourse[], cmap: Map<string, Course> ): n
     return totalWeightedScore / totalCredits ;
 }
 
-function calculateProjectedGPA(clist: UserCourse[], cmap: Map<string, Course> ): number {
+export function calculateProjectedGPA(clist: UserCourse[], cmap: Map<string, Course> ): number {
 
     let totalCredits = 0;
     let totalWeightedScore = 0;
@@ -59,10 +59,12 @@ function calculateProjectedGPA(clist: UserCourse[], cmap: Map<string, Course> ):
         const creds = course.credits;
 
         let score: number;
-        if( uc.grade !== undefined) {
+        if( uc.grade !== null && uc.grade !== undefined) { // must use null, not undefined, cus null is considered defined
             score = uc.grade;
-        } else {
+        } else if (uc.expectedGrade !== null && uc.expectedGrade !== undefined ) {
             score = uc.expectedGrade!;
+        } else {
+            continue;
         }
 
         totalCredits += creds;
