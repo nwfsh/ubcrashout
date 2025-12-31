@@ -7,3 +7,5 @@ if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
 export const db = new Database(path.join(dataDir, "app.db"));
 db.pragma("journal_mode = WAL");
+
+db.pragma("foreign_keys = ON"); // enables ON DELETE CASCADE in the init
